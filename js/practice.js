@@ -543,7 +543,7 @@ const waitTrial = {
   type: jsPsychSurveyText,
   questions: [
     {
-      prompt: "Zoomウェビナーの画面を開いてお待ちください。<br>(Escキーで全画面表示を解除できます。)<br>（<span style=\"color:red;\">このタブは閉じないでください</span>）<br>実験スタッフが全員の進行状況を確認した後、Zoomウェビナーのチャット機能でパスワードをお送りします。<br><br>パスワードを入力してください。",
+      prompt: "Zoomウェビナーの画面を開いてお待ちください。<br>(Escキーで全画面表示を解除できます。)<br><span style=\"color:red;\">このタブは閉じないでください</span><br>実験スタッフが全員の進行状況を確認した後、Zoomウェビナーのチャット機能でパスワードをお送りします。<br><br>パスワードを入力してください。",
       name: "password",
       required: true,
       input_type: "password"
@@ -607,4 +607,5 @@ const waitLoop = {
     ],  
   };
 }
+
 
