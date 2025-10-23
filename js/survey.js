@@ -330,7 +330,7 @@ function agentDecisions() {
         random = 0;
         return `<p>おめでとうございます！${cards[last_choice].label}のカード（${cards[last_choice].value}円）を獲得しました！</p>
         <p>あなたの実験報酬は <b style="color: red;">${cards[last_choice].value} 円</b>です。</p>
-        <p>この後、アンケートに進みます。報酬のお支払いのためには、最後までの参加が必要です。</p>
+        <p>この後、アンケートに進みます。</p>
         `;
       }
     },
@@ -552,4 +552,5 @@ function agentDecisions() {
     ]
   };
 };
+
 
