@@ -24,8 +24,7 @@ const intro3_id = {
   type: jsPsychSurveyText,
   questions: [
     {
-      prompt: "<b>生年月日</b>を入力してください（例：20030718）",　//パイロット用
-      //prompt: "<b>北大社会心理学実験システムのユーザーID</b>を入力してください。<p style='color:red;'>(謝礼をお支払いするために重要なステップなので、正確にご記入ください。)</p>", 
+      prompt: "<b>北大社会心理学実験システムのユーザーID</b>を入力してください。<p style='color:red;'>(謝礼をお支払いするために重要なステップなので、正確にご記入ください。)</p>", 
       name: "ID",
       required: true,
     }
@@ -161,6 +160,7 @@ const intro4 = {
   // ※キーボードの左右矢印でも進めます
 
 }
+
 
 
 
