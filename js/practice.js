@@ -599,7 +599,7 @@ const waitLoop = {
       confirmTestQ2Feedback,
       {
         type: jsPsychHtmlButtonResponse,
-        stimulus: "<h3>練習は以上です。</h3><p>実験の流れを理解できましたか？</p><p>もし分からないことがあれば、Zoomウェビナーのチャット機能で実験スタッフにお知らせください。</p><p>実験の流れが理解できたら、「次へ」ボタンをクリックしてください。</p>",
+        stimulus: "<h3>練習は以上です。</h3><p>実験の流れを理解できましたか？</p><p>もし分からないことがあれば、ZoomウェビナーのQ&A機能で実験スタッフにお知らせください。</p><p>実験の流れが理解できたら、「次へ」ボタンをクリックしてください。</p>",
         choices: ["次へ"]
       },
       downloadQuizResultTrial,
@@ -607,6 +607,7 @@ const waitLoop = {
     ],  
   };
 }
+
 
 
 
