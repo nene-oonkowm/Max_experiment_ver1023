@@ -144,7 +144,7 @@ function createPractice(jsPsych) {
         <p>このカードに決定しますか？</p>
         <p style="font-size:0.8em;">決定した場合は、他の人があなたと同じカードを選んでいるか、あなたがそのカードを獲得できるかをコンピュータが判断します。
         <br>決定しなかった場合は、次のラウンドの選択フェーズに移ります。</p>
-        <p style="font-size:0.8em;">練習として、ここでは「いいえ」を選択してください</p>
+        <p style="font-size:0.8em; color:#215F9A;">練習として、ここでは「いいえ」を選択してください</p>
       `;
       return html;
     },
@@ -294,7 +294,7 @@ function createPractice(jsPsych) {
       html += `</div>`;
       html += `
         <p>このカードに決定しますか？</p>
-        <p style="font-size:0.8em;">練習として、ここでは「はい」を選択してください</p>
+        <p style="font-size:0.8em; color:#215F9A;">練習として、ここでは「はい」を選択してください</p>
       `;
       return html;
     },
@@ -422,7 +422,7 @@ function createPractice(jsPsych) {
       }
       html += `</div>`;
       html += `<p>このカードに決定しますか？</p>
-              <p style="font-size:0.8em;">練習として、ここでは「はい」を選択してください</p>`;
+              <p style="font-size:0.8em; color:#215F9A;">練習として、ここでは「はい」を選択してください</p>`;
       return html;
     },
     choices: ["はい", "いいえ"],
@@ -478,7 +478,7 @@ const confirmTestQ2 = {
   preamble: "<h3>確認テスト Q2</h3>",
   questions: [
     {
-      prompt: "あなたの画面で金額が表示されているカードは、他の参加者にも同じように金額がわかるように表示されている。",
+      prompt: "あなたの画面で表示されているカードの金額は、他の参加者の画面にも同じように表示されている。",
       name: "q2",
       options: ["〇", "✕"]
     }
@@ -543,7 +543,7 @@ const waitTrial = {
   type: jsPsychSurveyText,
   questions: [
     {
-      prompt: "Zoomウェビナーの画面を開いてお待ちください。<br>(Escキーで全画面表示を解除できます。)<br><span style=\"color:red;\">このタブは閉じないでください</span><br>実験スタッフが全員の進行状況を確認した後、Zoomウェビナーのチャット機能でパスワードをお送りします。<br><br>パスワードを入力してください。",
+      prompt: "<h2>実験開始待機中</h3><br>Zoomウェビナーの画面を開いてお待ちください。<br>(Escキーで全画面表示を解除できます。)<br><span style=\"color:red;\">このタブは閉じないでください</span><br><br>実験スタッフが全員の進行状況を確認した後、Zoomウェビナーのチャット機能で実験を開始するためのパスワードをお送りします。<br><br>パスワードを入力してください。",
       name: "password",
       required: true,
       input_type: "password"
@@ -607,6 +607,7 @@ const waitLoop = {
     ],  
   };
 }
+
 
 
 
