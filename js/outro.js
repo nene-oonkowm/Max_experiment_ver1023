@@ -39,7 +39,7 @@ const saveOutroDataTrial = {
         }).last(9).values();
 
         // 期待するキー（必要に応じて追加・編集）
-        const expectedKeys = ["q_reward_sat","q1","q2","q3","q4","q5","q6","q7"];
+        const expectedKeys = ["q1","q2","q3","q4","q5","q6","q7","q8"];
 
         // キー集合を作る（id を先頭に）
         const keySet = new Set(["id", ...expectedKeys]);
@@ -247,6 +247,7 @@ var outro = {
     }
   ],
 };  // outro.jsのtimelineに追加
+
 
 
 
