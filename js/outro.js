@@ -34,7 +34,7 @@ const saveOutroDataTrial = {
       trial_duration: 1000,
       on_load: function() {
         // OutroDataだけ抽出
-        const outroData = jsPsych.data.get().filter({trial_type: "survey-html-form"}).last(9).values();
+        const outroData = jsPsych.data.get().filter({trial_type: "survey-html-form" || "survey-likert"}).last(9).values();
         // 1つのオブジェクトにまとめる
         const merged = {
           id: window.id || ""
@@ -217,6 +217,7 @@ var outro = {
     }
   ],
 };  // outro.jsのtimelineに追加
+
 
 
 
