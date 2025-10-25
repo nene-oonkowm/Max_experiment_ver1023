@@ -33,32 +33,62 @@ const saveOutroDataTrial = {
       choices: [],
       trial_duration: 1000,
       on_load: function() {
-        // OutroDataだけ抽出
-        const outroData = jsPsych.data.get().filter({trial_type: "survey-html-form" || "survey-likert"}).last(9).values();
-        // 1つのオブジェクトにまとめる
-        const merged = {
-          id: window.id || ""
-        };
+        // survey-html-form と survey-likert を対象に抽出（最後の9件を取得）
+        const outroData = jsPsych.data.get().filter(function(d){
+          return d.trial_type === "survey-html-form" || d.trial_type === "survey-likert";
+        }).last(9).values();
+
+        // 期待するキー（必要に応じて追加・編集）
+        const expectedKeys = ["q_reward_sat","q1","q2","q3","q4","q5","q6","q7"];
+
+        // キー集合を作る（id を先頭に）
+        const keySet = new Set(["id", ...expectedKeys]);
+
+        // 実際のデータからのキーも追加
         outroData.forEach(d => {
-          if (d.response) {
+          if (d.response && typeof d.response === "object") {
+            Object.keys(d.response).forEach(k => keySet.add(k));
+          }
+        });
+
+        const keys = Array.from(keySet);
+
+        // merged を初期化し、回答がないキーは null にする
+        const merged = {};
+        keys.forEach(k => {
+          merged[k] = null;
+        });
+        merged.id = window.id || "";
+
+        // 実際の回答で上書き（後の回答が優先）
+        outroData.forEach(d => {
+          if (d.response && typeof d.response === "object") {
             Object.entries(d.response).forEach(([k, v]) => {
               merged[k] = v;
             });
           }
         });
 
-        // ヘッダーと1行だけのCSVにする
-        const header = Object.keys(merged).join(",");
-        const row = Object.values(merged).join(",");
+        // CSV化（値が null の場合は文字列 null を入れる）
+        function escapeForCSV(val) {
+          if (val === null) return "null";
+          const s = String(val);
+          if (s.includes('"') || s.includes(',') || s.includes('\n')) {
+            return `"${s.replace(/"/g, '""')}"`;
+          }
+          return s;
+        }
+
+        const header = keys.join(",");
+        const row = keys.map(k => escapeForCSV(merged[k])).join(",");
         const raw_outro_csv = header + "\n" + row;
 
-        // ダウンロード処理
-        const bom = new Uint8Array([0xEF, 0xBB, 0xBF]);
-        const outro_csv = new TextDecoder().decode(bom) + raw_outro_csv;
-        uploadData(`${window.id}_OutroData.csv`, outro_csv)
+        // BOM付き文字列として送信
+        const outro_csv = '\uFEFF' + raw_outro_csv;
+        uploadData(`${window.id}_OutroData.csv`, outro_csv);
       }
-    };
-
+ };
+// ...existing code...
 var outro = {
   timeline: [
     {
@@ -217,6 +247,7 @@ var outro = {
     }
   ],
 };  // outro.jsのtimelineに追加
+
 
 
 
