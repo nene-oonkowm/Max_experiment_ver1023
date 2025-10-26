@@ -113,23 +113,23 @@ var outro = {
             <p style="font-weight:600; margin-bottom:12px;">最終的に獲得したカードの金額にどの程度満足していますか？</p>
             <div style="display:flex; justify-content:space-between; gap:8px; margin:12px 24px;">
               <label style="flex:1; text-align:center;">
-                <input type="radio" name="q_reward_sat" value="1" required>
+                <input type="radio" name="q1" value="1" required>
                 <div>1<br><small>非常に不満</small></div>
               </label>
               <label style="flex:1; text-align:center;">
-                <input type="radio" name="q_reward_sat" value="2">
+                <input type="radio" name="q1" value="2">
                 <div>2</div>
               </label>
               <label style="flex:1; text-align:center;">
-                <input type="radio" name="q_reward_sat" value="3">
+                <input type="radio" name="q1" value="3">
                 <div>3<br><small>どちらともいえない</small></div>
               </label>
               <label style="flex:1; text-align:center;">
-                <input type="radio" name="q_reward_sat" value="4">
+                <input type="radio" name="q1" value="4">
                 <div>4</div>
               </label>
               <label style="flex:1; text-align:center;">
-                <input type="radio" name="q_reward_sat" value="5">
+                <input type="radio" name="q1" value="5">
                 <div>5<br><small>非常に満足</small></div>
               </label>
             </div>
@@ -257,6 +257,7 @@ var outro = {
     }
   ],
 };  // outro.jsのtimelineに追加
+
 
 
 
