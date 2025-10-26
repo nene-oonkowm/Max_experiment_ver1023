@@ -437,15 +437,15 @@ function agentDecisions() {
         `;
         },
         on_finish: function(data){
-          var last_decision_data = jsPsych.data.get().filter({phase: "decision"}).last(1).values();
-          var last_choice = last_decision_data.length > 0 ? last_decision_data[0].chosen : undefined;
+          var selectedCardIndex = jsPsych.data.get().filter({phase: "auto_select"}).last(1).values()[0].chosen;
+          var selectedCard = cards[selectedCardIndex];
           data.id = window.id; // ラウンド数はdecisionTrialでインクリメントされているため-1
           data.round = roundNumber ;
           data.label = chosen_label;
           data.value = chosen_value;
-          data.decision = decision;
-          data.result = 1
-          data.random = 1
+          data.decision = 1;
+          data.result = 1;
+          data.random = 1;
           data.A = cards[0].available ? cards[0].value : "unavailable";
           data.B = cards[1].available ? cards[1].value : "unavailable";
           data.C = cards[2].available ? cards[2].value : "unavailable";
@@ -550,6 +550,7 @@ function agentDecisions() {
     ]
   };
 };
+
 
 
 
