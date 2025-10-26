@@ -34,9 +34,7 @@ const saveOutroDataTrial = {
       trial_duration: 1000,
       on_load: function() {
         // survey-html-form と survey-likert を対象に抽出（最後の9件を取得）
-        const outroData = jsPsych.data.get().filter(function(d){
-          return d.trial_type === "survey-html-form" || d.trial_type === "survey-likert";
-        }).last(9).values();
+        const outroData = jsPsych.data.get().filter({trial_type: "survey-html-form"}).last(9).values();
 
         // 期待するキー（必要に応じて追加・編集）
         const expectedKeys = ["q1","q2","q3","q4","q5","q6","q7","q8"];
@@ -109,22 +107,34 @@ var outro = {
       button_label_next: '実験を始める',
     },
 　　{
-      type: jsPsychSurveyLikert, // html-survey-likert-plugin を読み込んでいる前提
-      questions: [
-        {
-          prompt: "<b>1. 最終的に獲得したカードの金額にどの程度満足していますか？</b>",
-          labels: [
-            "1<br><small>非常に不満</small>",
-            "2",
-            "3<br><small>どちらともいえない</small>",
-            "4",
-            "5<br><small>非常に満足</small>"
-          ],
-          required: true,
-          name: "q1"
-        }
-      ],
-      scale_width: 600,    // 横幅調整（必要に応じて変更）
+      type: jsPsychSurveyHtmlForm,
+      html: `
+          <div style="max-width:800px; margin:0 auto; text-align:center;">
+            <p style="font-weight:600; margin-bottom:12px;">最終的に獲得したカードの金額にどの程度満足していますか？</p>
+            <div style="display:flex; justify-content:space-between; gap:8px; margin:12px 24px;">
+              <label style="flex:1; text-align:center;">
+                <input type="radio" name="q_reward_sat" value="1" required>
+                <div>1<br><small>非常に不満</small></div>
+              </label>
+              <label style="flex:1; text-align:center;">
+                <input type="radio" name="q_reward_sat" value="2">
+                <div>2</div>
+              </label>
+              <label style="flex:1; text-align:center;">
+                <input type="radio" name="q_reward_sat" value="3">
+                <div>3<br><small>どちらともいえない</small></div>
+              </label>
+              <label style="flex:1; text-align:center;">
+                <input type="radio" name="q_reward_sat" value="4">
+                <div>4</div>
+              </label>
+              <label style="flex:1; text-align:center;">
+                <input type="radio" name="q_reward_sat" value="5">
+                <div>5<br><small>非常に満足</small></div>
+              </label>
+            </div>
+          </div>
+        `,
       button_label: "次へ"
     },
     {
@@ -247,6 +257,7 @@ var outro = {
     }
   ],
 };  // outro.jsのtimelineに追加
+
 
 
 
