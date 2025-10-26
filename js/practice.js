@@ -457,7 +457,7 @@ function createPractice(jsPsych) {
     type: jsPsychHtmlButtonResponse,
     stimulus: function(){
       var last_choice = jsPsych.data.get().last(2).values()[0].chosen
-      return `<p>おめでとうございます！あなたは${cards[last_choice].label}のカード（${cards[last_choice].value}円）を獲得しました！</p>`;
+      return `<p>おめでとうございます！あなたは<b>${cards[last_choice].label}のカード（${cards[last_choice].value}円）</b>を獲得しました！</p>`;
     },
     choices: ["次へ"]
   };
@@ -625,6 +625,7 @@ const waitLoop = {
     ],  
   };
 }
+
 
 
 
