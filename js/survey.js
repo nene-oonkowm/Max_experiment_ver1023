@@ -414,8 +414,8 @@ function agentDecisions() {
       jsPsych.data.write({
         auto_selected: true,
         chosen: labels.indexOf(selectedCard.label),
-        chosen_label: selectedCard.label,
-        chosen_value: selectedCard.value,
+        label: selectedCard.label,
+        value: selectedCard.value,
         phase: "auto_select"
       });
       //分岐メッセージ
@@ -550,6 +550,7 @@ function agentDecisions() {
     ]
   };
 };
+
 
 
 
