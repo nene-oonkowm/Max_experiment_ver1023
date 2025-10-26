@@ -4,9 +4,28 @@ const rewardExplanationTrial = {
       type: jsPsychHtmlButtonResponse,
       stimulus: function() {
         // survey.jsと同様に、最後に獲得したカードの価値を取得
-        const lastCardData = jsPsych.data.get().filter({category: "SurveyData", result: 1}).values();
-        console.log("Last card data:", lastCardData); // デバッグ用
-        let value = lastCardData.value;
+        const arr = jsPsych.data.get().filter({category: "SurveyData", result: 1}).values();
+          console.log("Last card data array:", arr);
+      
+          // 最後の要素を安全に取り出す
+          const last = (arr && arr.length > 0) ? arr[arr.length - 1] : null;
+      
+          // 値がどこに入るかはデータ構造によるのでいくつかの候補をチェック
+          let value = null;
+          if (last) {
+            // 例: last.value、last.score、last.response.value などを順に確認
+            if (last.value !== undefined) value = last.value;
+            else if (last.score !== undefined) value = last.score;
+            else if (last.response && last.response.value !== undefined) value = last.response.value;
+            else if (last.response && typeof last.response === 'object') {
+              // response がオブジェクトで、キー名が未知の場合は代表的なキーを探す
+              const possibleKeys = ['value','amount','points','score'];
+              for (const k of possibleKeys) {
+                if (last.response[k] !== undefined) { value = last.response[k]; break; }
+              }
+            }
+          }
+
         let html = "<h3>報酬のご案内</h3><h5>お疲れさまでした！これで本実験は終了です。<br>以下であなたが受け取る報酬についてご説明しますので、よくお読みください。<br></h5>";
         if (value < 300) {
           html += `
@@ -257,6 +276,7 @@ var outro = {
     }
   ],
 };  // outro.jsのtimelineに追加
+
 
 
 
