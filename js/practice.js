@@ -309,7 +309,7 @@ function createPractice(jsPsych) {
       html += `</div>`;
       html += `</div>
         <p>このカードに決定しますか？</p>
-        <p style="font-size:0.8em;">練習として、ここでは「はい」を選択してください</p>
+        <p style="font-size:0.8em; color:#215F9A;">練習として、ここでは「はい」を選択してください</p>
       `;
       return html;
     },
@@ -627,6 +627,7 @@ const waitLoop = {
     ],  
   };
 }
+
 
 
 
