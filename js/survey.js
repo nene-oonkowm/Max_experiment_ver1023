@@ -441,8 +441,8 @@ function agentDecisions() {
           var last_choice = last_decision_data.length > 0 ? last_decision_data[0].chosen : undefined;
           data.id = window.id; // ラウンド数はdecisionTrialでインクリメントされているため-1
           data.round = roundNumber ;
-          data.label = selectedCard.label;
-          data.value = selectedCard.value;
+          data.label = chosen_label;
+          data.value = chosen_value;
           data.decision = decision;
           data.result = 1
           data.random = 1
@@ -550,6 +550,7 @@ function agentDecisions() {
     ]
   };
 };
+
 
 
 
