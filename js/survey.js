@@ -441,8 +441,8 @@ function agentDecisions() {
           var selectedCard = cards[selectedCardIndex];
           data.id = window.id; // ラウンド数はdecisionTrialでインクリメントされているため-1
           data.round = roundNumber ;
-          data.label = chosen_label;
-          data.value = chosen_value;
+          data.label = selectedCard.label;
+          data.value = selectedCard.value;
           data.decision = 1;
           data.result = 1;
           data.random = 1;
@@ -550,6 +550,7 @@ function agentDecisions() {
     ]
   };
 };
+
 
 
 
