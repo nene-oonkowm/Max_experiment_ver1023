@@ -471,7 +471,8 @@ const confirmTestQ1 = {
     {
       prompt: "1度選択したカードはもう一度選択することができる。",
       name: "q1",
-      options: ["〇", "✕"]
+      options: ["〇", "✕"],
+      required: true,
     }
   ],
   button_label: "答えをみる"
@@ -498,7 +499,8 @@ const confirmTestQ2 = {
     {
       prompt: "あなたの画面で表示されているカードの金額は、他の参加者の画面にも同じように表示されている。",
       name: "q2",
-      options: ["〇", "✕"]
+      options: ["〇", "✕"],
+      required: true,
     }
   ],
   button_label: "答えをみる"
@@ -625,6 +627,7 @@ const waitLoop = {
     ],  
   };
 }
+
 
 
 
