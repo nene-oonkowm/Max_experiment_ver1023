@@ -103,7 +103,7 @@ const intro4 = {
         <ul>
           <li style="padding-left: 1em;">あなたはカードを1枚選んでめくり、そのカードの金額を確認します。</li>
           <li style="padding-left: 1em;">あなたがめくったカードに書かれた金額はあなたしか見ることが出来ません。</li>
-          <li style="padding-left: 1em;">同様に、他の人がめくったカードの金額をあなたが見ることは出来ません。</li>
+          <li style="padding-left: 1em;">同様に、他の人がめくったカードの金額をあなたが見ることも出来ません。</li>
         </ul>
         <h4 style="color:#E97132; font-size: 1.4em;">決定フェーズ</h4>
         <ul>
@@ -161,6 +161,7 @@ const intro4 = {
   // ※キーボードの左右矢印でも進めます
 
 }
+
 
 
 
