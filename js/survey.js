@@ -440,9 +440,9 @@ function agentDecisions() {
           var last_decision_data = jsPsych.data.get().filter({phase: "decision"}).last(1).values();
           var last_choice = last_decision_data.length > 0 ? last_decision_data[0].chosen : undefined;
           data.id = window.id; // ラウンド数はdecisionTrialでインクリメントされているため-1
-          data.round = roundNumber - 1;
-          data.label = cards[last_choice].label;
-          data.value = cards[last_choice].value;
+          data.round = roundNumber ;
+          data.label = selectedCard.label;
+          data.value = selectedCard.value;
           data.decision = decision;
           data.result = 1
           data.random = 1
@@ -550,6 +550,7 @@ function agentDecisions() {
     ]
   };
 };
+
 
 
 
