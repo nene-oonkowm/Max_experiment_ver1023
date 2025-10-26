@@ -237,13 +237,32 @@ function createPractice(jsPsych) {
   var decisionTrial2 = {
     type: jsPsychHtmlButtonResponse,
     stimulus: function(){
-      var last_choice = jsPsych.data.get().last(1).values()[0].chosen;
+      // 既に記録されている "chosen" をすべて取得（時系列順）
+      const allValues = jsPsych.data.get().values();
+      const chosenRecords = allValues.filter(d => d.hasOwnProperty('chosen') && d.chosen !== null && d.chosen !== undefined);
+
+      // ラウンド1の選択（最初の chosen がラウンド1）
+      const firstChosen = chosenRecords.length > 0 ? chosenRecords[0].chosen : null;
+
+      // 今回の（直前の）選択（ラウンド2で選んだもの）
+      const lastRecord = jsPsych.data.get().last(1).values()[0];
+      const currentChosen = lastRecord ? lastRecord.chosen : null;
+
+      // 同じカードなら最初に見えた値を表示、違うカードなら750円を表示
+      let displayValue;
+      if (firstChosen !== null && currentChosen === firstChosen) {
+        displayValue = cards[currentChosen].value;
+      } else {
+        displayValue = 750;
+      }
+      const label = (typeof currentChosen === "number") ? cards[currentChosen].label : "";
       let html = `
         <h3>練習　ラウンド2　ー決定フェーズー</h3>
-        <p>${cards[last_choice].label} の金額は <b>750円</b> です。</p>`;
+        <p>${label} の金額は <b>${displayValue}円</b> です。</p>
+      `;
       html += `<div style="display:flex;flex-direction:row;justify-content:center;align-items:flex-end;gap:12px;margin:24px 0;">`;
       for(let i=0; i<cards.length; i++){
-        if (!cards[i].available && i !== last_choice) { //空白ボタン
+        if (!cards[i].available && i !== currentChosen) { //空白ボタン
           html += `
             <button
               class="choice-card"
@@ -270,7 +289,7 @@ function createPractice(jsPsych) {
             class="choice-card"
             style="
               width:75px;height:100px;
-              border:${i === last_choice ? '4px' : '2px'} solid ${i === last_choice ? '#e91e63' : '#888'};
+              border:${i === currentChosen ? '4px' : '2px'} solid ${i === currentChosen ? '#e91e63' : '#888'};
               border-radius:12px;
               background:${cards[i].revealed ? '#fff' : '#fff'};
               color:#000;
@@ -282,26 +301,22 @@ function createPractice(jsPsych) {
           >
             <span>${cards[i].label}</span>
             <span style="font-size:0.9em;">
-              ${
-                i === last_choice
-                  ? "750円"
-                  : (cards[i].revealed ? `${cards[i].value}円` : "")
-              }
+              ${ i === currentChosen ? `${displayValue}円` : (cards[i].revealed ? `${cards[i].value}円` : "") }
             </span>
           </button>
         `;
       }
       html += `</div>`;
-      html += `
+      html += `</div>
         <p>このカードに決定しますか？</p>
-        <p style="font-size:0.8em; color:#215F9A;">練習として、ここでは「はい」を選択してください</p>
+        <p style="font-size:0.8em;">練習として、ここでは「はい」を選択してください</p>
       `;
       return html;
     },
     choices: ["はい", "いいえ"],
     button_html: [
-      '<button class="jspsych-btn">%choice%</button>', // はいボタン有効
-      '<button class="jspsych-btn" disabled>%choice%</button>' // いいえボタン無効
+      '<button class="jspsych-btn">%choice%</button>', 
+      '<button class="jspsych-btn" disabled>%choice%</button>' 
     ],
     on_finish: function(data){
       data.decision = 0; // 強制的に「はい」
@@ -322,12 +337,15 @@ function createPractice(jsPsych) {
     return {
       type: jsPsychHtmlButtonResponse,
       on_start: function() {
-        const trials = jsPsych.data.get().filter({chosen: true}).values();
-          if (trials.length > 0) {
-            const last_choice = trials[trials.length - 1].chosen;
-            cards[last_choice].available = false;
-          }
-      },
+      // 直前の選択をグローバル index で取得して利用
+      const chosenRecords = jsPsych.data.get().filter(d => d.hasOwnProperty('chosen')).values();
+      if (chosenRecords.length > 0) {
+        const last_choice = chosenRecords[chosenRecords.length - 1].chosen;
+        if (typeof last_choice === "number") {
+          cards[last_choice].available = false;
+        }
+      }
+    },
       stimulus: `
         <h3>練習　ラウンド3　ー選択フェーズー</h3>
         <p>選べるカードは7枚です。7枚のカードの中からめくるカードを1枚選んでください。</p>
@@ -607,6 +625,7 @@ const waitLoop = {
     ],  
   };
 }
+
 
 
 
