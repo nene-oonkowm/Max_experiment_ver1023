@@ -87,6 +87,15 @@ const saveOutroDataTrial = {
           }
         });
 
+         // q2の複数選択チェックボックスを統合
+        const q3Selected = [];
+        for (let i = 0; i <= 4; i++) {
+          if (merged[`q3_${i}`] === "1") {
+            q3Selected.push(i.toString());
+          }
+        }
+        merged.q3 = q3Selected.length > 0 ? q3Selected.join(",") : null;
+
         // CSV化（値が null の場合は文字列 null を入れる）
         function escapeForCSV(val) {
           if (val === null) return "null";
@@ -176,11 +185,11 @@ var outro = {
       html: `
         <div style="margin-bottom: 24px;">
           <p><b>3. あなたがカードを決定する際、どんなことを考慮しましたか？（複数選択可）</b></p>
-          <label><input type="checkbox" name="q3[]" value="0"> 目標金額（○○円以上なら決定 など）</label><br>
-          <label><input type="checkbox" name="q3[]" value="1"> これまで選択したカードとの比較</label><br>
-          <label><input type="checkbox" name="q3[]" value="2"> 残っている選択肢の数</label><br>
-          <label><input type="checkbox" name="q3[]" value="3"> 残りのラウンド数</label><br>
-          <label><input type="checkbox" name="q3[]" value="4"> その他</label>
+          <label><input type="checkbox" name="q3_0" value="0"> 目標金額（○○円以上なら決定 など）</label><br>
+          <label><input type="checkbox" name="q3_1" value="1"> これまで選択したカードとの比較</label><br>
+          <label><input type="checkbox" name="q3_2" value="2"> 残っている選択肢の数</label><br>
+          <label><input type="checkbox" name="q3_3" value="3"> 残りのラウンド数</label><br>
+          <label><input type="checkbox" name="q3_4" value="4"> その他</label>
         </div>
       `,
       button_label: "次へ"
@@ -277,6 +286,7 @@ var outro = {
     }
   ],
 };  // outro.jsのtimelineに追加
+
 
 
 
