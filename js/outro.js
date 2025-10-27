@@ -90,7 +90,7 @@ const saveOutroDataTrial = {
          // q2の複数選択チェックボックスを統合
         const q3Selected = [];
         for (let i = 0; i <= 4; i++) {
-          if (merged[`q3_${i}`] === "1") {
+          if (merged[`q2_${i}`] === i.toString()) {
             q3Selected.push(i.toString());
           }
         }
@@ -286,6 +286,7 @@ var outro = {
     }
   ],
 };  // outro.jsのtimelineに追加
+
 
 
 
