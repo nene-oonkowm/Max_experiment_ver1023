@@ -143,7 +143,7 @@ const intro4 = {
       <p>カードが残り1枚になった場合、または実験が12ラウンド目に入った場合は、</p>
       <p><b>残っているカードが、まだカードを獲得していない参加者にランダムに割り当てられます。</b></p>
       <p>あなたが割り当てられたカードの金額が、あなたのゲーム報酬となります。</p>
-      <img src="img/intro5.png" alt="" style="width:600px; display:block; margin:16px auto;">
+      <img src="img/intro5.png" alt="" style="width:450px; display:block; margin:16px auto;">
     </div>`,
 
     // Intro11 実験説明６（確認）
@@ -161,6 +161,7 @@ const intro4 = {
   // ※キーボードの左右矢印でも進めます
 
 }
+
 
 
 
